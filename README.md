@@ -16,8 +16,11 @@ assets/img/              logo, ikon, brosur
 
 ## Mengubah konten
 - **Nomor WhatsApp / jadwal**: `KJ_CONFIG` di `assets/js/products.js`.
-- **Produk**: tambah/ubah objek di `KJ_PRODUCTS`. Ganti ilustrasi emoji dengan foto asli
-  dengan menambahkan `img: "assets/img/produk/nama.jpg"`.
+- **Produk**: tambah/ubah objek di `KJ_PRODUCTS`.
+- **Foto produk**: simpan foto di `assets/img/produk/` dengan nama `<id-produk>.jpg`
+  (contoh `tahu-sumedang.jpg`, `bolen-kartika-sari.jpg`) — langsung tampil di kartu tanpa
+  mengubah kode. Untuk nama file lain atau beberapa foto (galeri), isi `img` di produknya.
+  Selama foto belum ada, kartu menampilkan ilustrasi sesuai kategori.
 
 ## Menjalankan
 Website statis tanpa build. Buka `index.html` langsung, atau upload folder ini ke hosting
