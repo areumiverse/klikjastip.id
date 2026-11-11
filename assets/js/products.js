@@ -1,231 +1,191 @@
 /*
- * Data katalog KlikJastip.id
+ * Data KlikJastip.id — edit di file ini saja.
  * ---------------------------------------------------------------
- * Cara menambah / mengubah produk:
- *  - route   : "bdg-smd" (dibeli di Bandung, diantar ke Sumedang)
- *              "smd-bdg" (dibeli di Sumedang, diantar ke Bandung)
- *  - cat     : kuliner | kopi | fashion | skincare | supermarket
- *  - featured: true = tampil dengan label "Unggulan" & di urutan atas
- *  - variants: (opsional) pilihan varian yang bisa dipilih pelanggan
- *  - emoji/bg: ilustrasi kartu produk (ganti dengan `img` bila punya foto,
- *              contoh: img: "assets/img/produk/bolen.jpg")
+ *  route   : "bdg-smd" = dibeli di Bandung, diantar ke Sumedang
+ *            "smd-bdg" = dibeli di Sumedang, diantar ke Bandung
+ *  cat     : kue | camilan | kopi | fashion | skincare | harian
+ *  tag     : (opsional) catatan kecil tulisan tangan di samping nama
+ *  variants: (opsional) pilihan yang bisa dipilih pelanggan
+ *  img     : (opsional) foto produk, contoh "assets/img/produk/bolen.jpg"
  */
 window.KJ_CONFIG = {
-  waNumber: "6285536584366",       // nomor WA tujuan (format internasional, tanpa +)
+  waNumber: "6285536584366",
   waDisplay: "0855 3658 4366",
-  // Jadwal rutin perjalanan. day: 0=Minggu ... 6=Sabtu
+  // day: 0 = Minggu ... 6 = Sabtu
   schedule: [
-    { day: 1, label: "Senin",       time: "",     dest: "Bandung",  route: "smd-bdg" },
-    { day: 3, label: "Rabu Sore",   time: "sore", dest: "Sumedang", route: "bdg-smd" },
-    { day: 4, label: "Kamis Pagi",  time: "pagi", dest: "Bandung",  route: "smd-bdg" },
-    { day: 5, label: "Jumat Sore",  time: "sore", dest: "Sumedang", route: "bdg-smd" }
+    { day: 1, label: "Senin",      short: "Sen",       dest: "Bandung",  route: "smd-bdg" },
+    { day: 3, label: "Rabu sore",  short: "Rab sore",  dest: "Sumedang", route: "bdg-smd" },
+    { day: 4, label: "Kamis pagi", short: "Kam pagi",  dest: "Bandung",  route: "smd-bdg" },
+    { day: 5, label: "Jumat sore", short: "Jum sore",  dest: "Sumedang", route: "bdg-smd" }
   ]
 };
 
 window.KJ_ROUTES = {
-  "bdg-smd": { from: "Bandung",  to: "Sumedang", short: "Bandung → Sumedang", title: "Bandung Shopping",     desc: "Belanja di Bandung, kami antarkan ke Sumedang." },
-  "smd-bdg": { from: "Sumedang", to: "Bandung",  short: "Sumedang → Bandung", title: "Sumedang Local Picks", desc: "Oleh-oleh khas Sumedang, kami antarkan ke Bandung." }
+  "bdg-smd": { short: "Bandung → Sumedang", tab: "Barang dari Bandung", who: "Untuk yang di Sumedang" },
+  "smd-bdg": { short: "Sumedang → Bandung", tab: "Barang dari Sumedang", who: "Untuk yang di Bandung" }
 };
 
-window.KJ_CATEGORIES = [
-  { id: "all",         label: "Semua",       emoji: "✨" },
-  { id: "kuliner",     label: "Kuliner & Oleh-oleh", emoji: "🍰" },
-  { id: "kopi",        label: "Kopi Viral",  emoji: "☕" },
-  { id: "fashion",     label: "Fashion",     emoji: "👟" },
-  { id: "skincare",    label: "Skincare & Kosmetik", emoji: "🧴" },
-  { id: "supermarket", label: "Supermarket", emoji: "🛒" }
-];
+window.KJ_CATEGORIES = {
+  kue: "Kue & roti",
+  camilan: "Camilan & lauk",
+  kopi: "Kopi",
+  fashion: "Sepatu & pakaian",
+  skincare: "Skincare",
+  harian: "Belanja harian"
+};
 
 window.KJ_PRODUCTS = [
-  /* ================== RUTE 01 · BANDUNG → SUMEDANG ================== */
-  { id: "bolen-kartika-sari", route: "bdg-smd", cat: "kuliner", featured: true,
-    name: "Pisang Bolen Kartika Sari", brand: "Kartika Sari",
-    desc: "Bolen legendaris Bandung, lembut berlapis dengan isian pisang & keju.",
-    emoji: "🥐", bg: "#FFE9C7",
-    variants: ["Pisang Keju", "Pisang Coklat", "Pisang Coklat Keju", "Mix"] },
+  /* ---------- Dari Bandung, dibawa ke Sumedang ---------- */
+  { id: "bolen-kartika-sari", route: "bdg-smd", cat: "kue", tag: "paling sering dititip",
+    name: "Pisang Bolen Kartika Sari", where: "Kartika Sari",
+    desc: "Bolen pisang khas Bandung. Tulis jumlah kotak dan rasanya.",
+    variants: ["Pisang keju", "Pisang coklat", "Pisang coklat keju", "Campur"] },
 
-  { id: "brownies-amanda", route: "bdg-smd", cat: "kuliner", featured: true,
-    name: "Brownies Kukus Amanda", brand: "Amanda Brownies",
-    desc: "Brownies kukus lembut & moist, oleh-oleh wajib dari Bandung.",
-    emoji: "🍫", bg: "#F3DCCF",
-    variants: ["Original", "Pandan", "Keju", "Tiramisu", "Mix"] },
+  { id: "brownies-amanda", route: "bdg-smd", cat: "kue", tag: "laris",
+    name: "Brownies Kukus Amanda", where: "Amanda Brownies",
+    desc: "Brownies kukus yang lembut, pilih rasanya di bawah.",
+    variants: ["Original", "Pandan", "Keju", "Tiramisu"] },
 
-  { id: "brownies-prima-rasa", route: "bdg-smd", cat: "kuliner", featured: true,
-    name: "Brownies Panggang Prima Rasa", brand: "Prima Rasa",
-    desc: "Brownies panggang dengan topping melimpah, renyah di luar lembut di dalam.",
-    emoji: "🍰", bg: "#F6E1D3" },
+  { id: "brownies-prima-rasa", route: "bdg-smd", cat: "kue",
+    name: "Brownies Panggang Prima Rasa", where: "Prima Rasa",
+    desc: "Brownies panggang dengan topping kacang, keju, atau almond." },
 
-  { id: "bolu-bakar-tunggal", route: "bdg-smd", cat: "kuliner", featured: true,
-    name: "Bolu Bakar Tunggal", brand: "Bolu Bakar Tunggal",
-    desc: "Bolu bakar hangat dengan aneka topping manis & legit.",
-    emoji: "🧁", bg: "#FFE3D8" },
+  { id: "bolu-bakar-tunggal", route: "bdg-smd", cat: "kue",
+    name: "Bolu Bakar Tunggal", where: "Bolu Bakar Tunggal",
+    desc: "Tulis topping yang diinginkan di catatan, nanti kami pilihkan." },
 
-  { id: "batagor-frozen", route: "bdg-smd", cat: "kuliner", featured: true,
-    name: "Batagor & Frozen Food Bandung", brand: "Batagor Riri, dll.",
-    desc: "Batagor dan makanan beku khas Bandung, dikemas rapi & aman di perjalanan.",
-    emoji: "🥟", bg: "#E5EEFB" },
+  { id: "bolu-susu-lembang", route: "bdg-smd", cat: "kue",
+    name: "Bolu Susu Lembang", where: "Bolu Susu Lembang",
+    desc: "Bolu gulung rasa susu, banyak pilihan isi." },
 
-  { id: "keripik-maicih", route: "bdg-smd", cat: "kuliner", featured: true,
-    name: "Keripik & Camilan Bandung", brand: "Maicih, dll.",
-    desc: "Keripik pedas, seblak kering, dan aneka camilan khas Bandung.",
-    emoji: "🌶️", bg: "#FFE0DE" },
+  { id: "surabi-bandung", route: "bdg-smd", cat: "kue",
+    name: "Surabi Bandung", where: "Surabi Bandung",
+    desc: "Paling enak dimakan hangat, jadi kami bungkus terpisah dari kuahnya." },
 
-  { id: "bolu-susu-lembang", route: "bdg-smd", cat: "kuliner",
-    name: "Bolu Susu Lembang", brand: "Bolu Susu Lembang",
-    desc: "Bolu lembut dengan aroma susu segar khas Lembang.",
-    emoji: "🥛", bg: "#EEF4FF" },
+  { id: "batagor-frozen", route: "bdg-smd", cat: "camilan", tag: "laris",
+    name: "Batagor & frozen food", where: "Batagor Riri, dll.",
+    desc: "Kami pilih yang kemasan vakum supaya aman sampai Sumedang." },
 
-  { id: "tahu-susu-lembang", route: "bdg-smd", cat: "kuliner",
-    name: "Tahu Susu Lembang", brand: "Tahu Susu Lembang",
-    desc: "Tahu lembut berbahan susu sapi segar dari Lembang.",
-    emoji: "🧈", bg: "#FFF6D6" },
+  { id: "keripik-maicih", route: "bdg-smd", cat: "camilan",
+    name: "Keripik Maicih & camilan pedas", where: "Maicih, dll.",
+    desc: "Keripik singkong, seblak kering, basreng. Sebutkan level pedasnya." },
 
-  { id: "peuyeum-bandung", route: "bdg-smd", cat: "kuliner",
-    name: "Peuyeum Bandung", brand: "Peuyeum Bandung",
-    desc: "Tape singkong manis legit, oleh-oleh tradisional Bandung.",
-    emoji: "🍠", bg: "#FFF1D6" },
+  { id: "tahu-susu-lembang", route: "bdg-smd", cat: "camilan",
+    name: "Tahu Susu Lembang", where: "Lembang",
+    desc: "Tahu lembut dari susu sapi, dibawa dalam keadaan mentah." },
+
+  { id: "peuyeum-bandung", route: "bdg-smd", cat: "camilan",
+    name: "Peuyeum Bandung", where: "Peuyeum Bandung",
+    desc: "Tape singkong gantung, dijual per ikat." },
+
+  { id: "sejiwa-mont-blanc", route: "bdg-smd", cat: "kopi", tag: "lagi ramai",
+    name: "Mont Blanc Coffee", where: "Sejiwa Coffee",
+    desc: "Es kopi dengan krim tebal di atasnya. Diminum paling enak di hari yang sama." },
+
+  { id: "coma-dirty-latte", route: "bdg-smd", cat: "kopi", tag: "lagi ramai",
+    name: "Dirty Latte", where: "CO,MA",
+    desc: "Espresso di atas susu dingin. Paling pas diminum hari itu juga." },
+
+  { id: "toko-djawa", route: "bdg-smd", cat: "kopi",
+    name: "Es Kopi Toko Djawa", where: "Toko Djawa",
+    desc: "Kopi susu gula jawa versi botol, atau Kopi Awan yang pakai foam.",
+    variants: ["Kopi susu botol", "Kopi Awan"] },
+
+  { id: "jabarano", route: "bdg-smd", cat: "kopi",
+    name: "Jabarano Coffee", where: "Jabarano",
+    desc: "Kopi dari biji Jawa Barat. Bisa sekalian titip cireng-nya." },
+
+  { id: "kopi-selamat-pagi", route: "bdg-smd", cat: "kopi",
+    name: "Kopi Selamat Pagi (literan)", where: "Kopi Selamat Pagi",
+    desc: "Kopi susu dengan rasa kelapa, dalam botol literan." },
 
   { id: "kopi-aroma", route: "bdg-smd", cat: "kopi",
-    name: "Kopi Aroma Bandung", brand: "Kopi Aroma",
-    desc: "Kopi legendaris Bandung sejak 1930, tersedia arabika & robusta.",
-    emoji: "🫘", bg: "#EADBCF",
-    variants: ["Arabika", "Robusta", "Mix"] },
-
-  { id: "surabi-bandung", route: "bdg-smd", cat: "kuliner",
-    name: "Surabi Bandung", brand: "Surabi Bandung",
-    desc: "Surabi dengan aneka topping manis & asin.",
-    emoji: "🥞", bg: "#FFEBD1" },
-
-  /* ---- Kopi viral Bandung ---- */
-  { id: "sejiwa-mont-blanc", route: "bdg-smd", cat: "kopi", featured: true, viral: true,
-    name: "Mont Blanc Coffee", brand: "Sejiwa Coffee",
-    desc: "Es kopi dengan lapisan krim tebal di atasnya — lagi viral di sosmed!",
-    emoji: "🧋", bg: "#F1E4D8" },
-
-  { id: "coma-dirty-latte", route: "bdg-smd", cat: "kopi", featured: true, viral: true,
-    name: "Dirty Latte", brand: "CO,MA",
-    desc: "Espresso pekat berpadu susu dingin yang super creamy.",
-    emoji: "☕", bg: "#EADFD5" },
-
-  { id: "toko-djawa", route: "bdg-smd", cat: "kopi", featured: true, viral: true,
-    name: "Es Kopi Toko Djawa", brand: "Toko Djawa",
-    desc: "Pionir kopi susu gula jawa Bandung. Tersedia botolan & Kopi Awan.",
-    emoji: "🥤", bg: "#F5E6D3",
-    variants: ["Es Kopi Susu Botolan", "Es Kopi Awan"] },
-
-  { id: "jabarano", route: "bdg-smd", cat: "kopi", viral: true,
-    name: "Jabarano Coffee", brand: "Jabarano",
-    desc: "Kopi dari biji asli Jawa Barat + menu pendamping lokal seperti cireng premium.",
-    emoji: "🌄", bg: "#E4ECF7" },
-
-  { id: "kopi-selamat-pagi", route: "bdg-smd", cat: "kopi", viral: true,
-    name: "Kopi Selamat Pagi (Literan)", brand: "Kopi Selamat Pagi",
-    desc: "Kopi susu dengan sentuhan kelapa gurih, praktis dalam botol literan.",
-    emoji: "🥥", bg: "#EFF6E8" },
+    name: "Kopi Aroma", where: "Jl. Banceuy",
+    desc: "Kopi bubuk dari pabrik kopi tua di Banceuy.",
+    variants: ["Arabika", "Robusta"] },
 
   { id: "b-low", route: "bdg-smd", cat: "kopi",
-    name: "B Low Listening Coffee Bar", brand: "B Low",
-    desc: "Menu & biji kopi dari listening bar yang lagi hits di Bandung.",
-    emoji: "🎧", bg: "#E9E4F5" },
+    name: "B Low Listening Coffee Bar", where: "B Low",
+    desc: "Minuman atau biji kopi. Tulis menu yang dimau di catatan." },
 
   { id: "makmur-jaya", route: "bdg-smd", cat: "kopi",
-    name: "Makmur Jaya Coffee Roaster", brand: "Makmur Jaya",
-    desc: "Biji kopi & minuman dari roastery favorit anak Bandung.",
-    emoji: "🔥", bg: "#F7E3D6",
-    variants: ["Minuman", "Biji Kopi", "Kopi Bubuk"] },
+    name: "Makmur Jaya Coffee Roaster", where: "Makmur Jaya",
+    desc: "Biji kopi sangrai sendiri, bisa minta digiling.",
+    variants: ["Minuman", "Biji kopi", "Digiling"] },
 
-  /* ---- Fashion, skincare, supermarket ---- */
-  { id: "sepatu-cibaduyut", route: "bdg-smd", cat: "fashion", featured: true,
-    name: "Sepatu & Fashion Cibaduyut", brand: "Produk Cibaduyut",
-    desc: "Sepatu kulit, sandal & fashion dari sentra Cibaduyut. Tulis ukuran/model di catatan.",
-    emoji: "👞", bg: "#EADFD3" },
+  { id: "sepatu-cibaduyut", route: "bdg-smd", cat: "fashion",
+    name: "Sepatu & sandal Cibaduyut", where: "Cibaduyut",
+    desc: "Kirim foto modelnya lewat WhatsApp dan tulis ukuran kaki di catatan." },
 
   { id: "tas-dompet", route: "bdg-smd", cat: "fashion",
-    name: "Tas & Dompet Lokal Bandung", brand: "Brand lokal Bandung",
-    desc: "Tas, dompet, dan aksesori kulit buatan pengrajin Bandung.",
-    emoji: "👜", bg: "#FCE4EC" },
+    name: "Tas & dompet kulit", where: "Pengrajin Bandung",
+    desc: "Buatan pengrajin lokal. Sebutkan warna dan ukuran." },
 
   { id: "factory-outlet", route: "bdg-smd", cat: "fashion",
-    name: "Pakaian & Aksesori Factory Outlet", brand: "Factory Outlet Bandung",
-    desc: "Titip belanja di FO Bandung. Kirim foto/link barang via WhatsApp.",
-    emoji: "👕", bg: "#E3EEFC" },
+    name: "Pakaian dari factory outlet", where: "Factory outlet Bandung",
+    desc: "Kirim link atau foto barangnya, nanti kami carikan di FO." },
 
-  { id: "skincare", route: "bdg-smd", cat: "skincare", featured: true,
-    name: "Skincare & Kosmetik", brand: "Semua merek",
-    desc: "Titip skincare & make up dari toko/mall di Bandung. Sebutkan merek & varian.",
-    emoji: "🧴", bg: "#FDE7EF" },
+  { id: "skincare", route: "bdg-smd", cat: "skincare",
+    name: "Skincare & kosmetik", where: "Toko & mall di Bandung",
+    desc: "Tulis merek, nama produk, dan ukurannya. Kami cek stok dulu." },
 
-  { id: "supermarket", route: "bdg-smd", cat: "supermarket",
-    name: "Produk Supermarket & Kebutuhan Harian", brand: "Supermarket Bandung",
-    desc: "Barang yang sulit dicari di Sumedang? Tulis daftar belanjanya di catatan.",
-    emoji: "🛒", bg: "#E6F5EC" },
+  { id: "supermarket", route: "bdg-smd", cat: "harian",
+    name: "Belanja supermarket", where: "Supermarket di Bandung",
+    desc: "Barang yang susah dicari di Sumedang. Tulis daftar belanjanya di catatan." },
 
-  /* ================== RUTE 02 · SUMEDANG → BANDUNG ================== */
-  { id: "tahu-sumedang", route: "smd-bdg", cat: "kuliner", featured: true,
-    name: "Tahu Sumedang", brand: "Tahu goreng khas Sumedang",
-    desc: "Tahu ikonik Sumedang: renyah di luar, kopong & gurih di dalam.",
-    emoji: "🟫", bg: "#FFEBC9",
-    variants: ["Matang (siap makan)", "Mentah (goreng sendiri)"] },
+  /* ---------- Dari Sumedang, dibawa ke Bandung ---------- */
+  { id: "tahu-sumedang", route: "smd-bdg", cat: "camilan", tag: "paling sering dititip",
+    name: "Tahu Sumedang", where: "Pabrik tahu di Sumedang",
+    desc: "Bisa yang sudah digoreng, atau mentah untuk digoreng sendiri di rumah.",
+    variants: ["Sudah digoreng", "Mentah"] },
 
-  { id: "ubi-cilembu", route: "smd-bdg", cat: "kuliner", featured: true,
-    name: "Ubi Cilembu", brand: "Ubi madu khas Cilembu",
-    desc: "Ubi madu asli Cilembu, manis legit bermadu saat dipanggang.",
-    emoji: "🍠", bg: "#F8DCCB",
-    variants: ["Matang (oven)", "Mentah"] },
+  { id: "ubi-cilembu", route: "smd-bdg", cat: "camilan", tag: "laris",
+    name: "Ubi Cilembu", where: "Cilembu",
+    desc: "Ubi madu asli Cilembu, dijual per kilo.",
+    variants: ["Sudah dioven", "Mentah"] },
 
-  { id: "opak-ketan", route: "smd-bdg", cat: "kuliner", featured: true,
-    name: "Opak Ketan", brand: "Camilan khas Sumedang",
-    desc: "Camilan ketan renyah, ringan dan praktis dibawa.",
-    emoji: "🍘", bg: "#FFF3D9" },
+  { id: "keripik-ubi-cilembu", route: "smd-bdg", cat: "camilan",
+    name: "Keripik Ubi Cilembu", where: "Cilembu",
+    desc: "Manis sedikit asin. Awet, cocok buat stok di rumah." },
 
-  { id: "keripik-ubi-cilembu", route: "smd-bdg", cat: "kuliner", featured: true,
-    name: "Keripik Ubi Cilembu", brand: "Olahan ubi lokal",
-    desc: "Keripik dari ubi Cilembu, manis gurih — cocok untuk stok camilan.",
-    emoji: "🥔", bg: "#FFE7CF" },
+  { id: "opak-ketan", route: "smd-bdg", cat: "camilan",
+    name: "Opak Ketan", where: "Sumedang",
+    desc: "Ringan dan tidak gampang hancur di jalan." },
 
-  { id: "kopi-sumedang", route: "smd-bdg", cat: "kopi", featured: true,
-    name: "Kopi Sumedang", brand: "Kopi lokal pegunungan Sumedang",
-    desc: "Kopi dari pegunungan Sumedang untuk pecinta kopi lokal.",
-    emoji: "⛰️", bg: "#E6DED6",
-    variants: ["Biji Kopi", "Kopi Bubuk"] },
+  { id: "sale-pisang", route: "smd-bdg", cat: "camilan",
+    name: "Sale Pisang", where: "Sumedang",
+    desc: "Ada yang kering dan yang digoreng tepung." },
 
-  { id: "bolu-aren", route: "smd-bdg", cat: "kuliner",
-    name: "Bolu Aren", brand: "Olahan gula aren",
-    desc: "Bolu lembut dengan manis khas gula aren.",
-    emoji: "🍯", bg: "#F5E2C8" },
+  { id: "emplod", route: "smd-bdg", cat: "camilan",
+    name: "Emplod", where: "Sumedang",
+    desc: "Camilan lama yang sekarang agak susah dicari." },
 
-  { id: "lapis-sumedang", route: "smd-bdg", cat: "kuliner",
-    name: "Lapis Sumedang", brand: "Kue oleh-oleh",
-    desc: "Kue lapis legit khas Sumedang untuk oleh-oleh keluarga.",
-    emoji: "🍮", bg: "#FFE6D0" },
+  { id: "oncom-sumedang", route: "smd-bdg", cat: "camilan",
+    name: "Oncom Sumedang", where: "Sumedang",
+    desc: "Untuk dimasak sendiri di rumah." },
 
-  { id: "sale-pisang", route: "smd-bdg", cat: "kuliner",
-    name: "Sale Pisang", brand: "Camilan pisang",
-    desc: "Pisang sale manis kenyal, camilan tradisional favorit.",
-    emoji: "🍌", bg: "#FFF4C9" },
+  { id: "tape-singkong", route: "smd-bdg", cat: "camilan",
+    name: "Tape Singkong", where: "Sumedang",
+    desc: "Dibungkus daun, dibawa di hari yang sama." },
 
-  { id: "emplod", route: "smd-bdg", cat: "kuliner",
-    name: "Emplod", brand: "Camilan tradisional",
-    desc: "Camilan tradisional khas Sumedang yang makin jarang ditemukan.",
-    emoji: "🍡", bg: "#F3E6F7" },
+  { id: "salak-bongkok", route: "smd-bdg", cat: "camilan",
+    name: "Salak Bongkok", where: "Kebun di Sumedang",
+    desc: "Buah musiman. Kami kabari kalau stoknya sedang kosong." },
 
-  { id: "salak-bongkok", route: "smd-bdg", cat: "kuliner",
-    name: "Salak Bongkok", brand: "Buah khas Sumedang",
-    desc: "Salak khas Sumedang dengan rasa manis segar.",
-    emoji: "🌰", bg: "#F1E3D9" },
+  { id: "sawo-sukatali", route: "smd-bdg", cat: "camilan",
+    name: "Sawo Sukatali", where: "Sukatali",
+    desc: "Buah musiman, dijual per kilo." },
 
-  { id: "sawo-sukatali", route: "smd-bdg", cat: "kuliner",
-    name: "Sawo Sukatali", brand: "Buah khas Sukatali",
-    desc: "Sawo manis legit dari Sukatali, Sumedang.",
-    emoji: "🥝", bg: "#EFE8D8" },
+  { id: "bolu-aren", route: "smd-bdg", cat: "kue",
+    name: "Bolu Aren", where: "Sumedang",
+    desc: "Bolu dengan gula aren, tidak terlalu manis." },
 
-  { id: "tape-singkong", route: "smd-bdg", cat: "kuliner",
-    name: "Tape Singkong", brand: "Fermentasi singkong",
-    desc: "Tape singkong manis khas Sumedang.",
-    emoji: "🥣", bg: "#FFF6DD" },
+  { id: "lapis-sumedang", route: "smd-bdg", cat: "kue",
+    name: "Lapis Sumedang", where: "Sumedang",
+    desc: "Kue lapis untuk oleh-oleh atau acara keluarga." },
 
-  { id: "oncom-sumedang", route: "smd-bdg", cat: "kuliner",
-    name: "Oncom Sumedang", brand: "Pangan tradisional",
-    desc: "Oncom khas Sumedang untuk bahan masakan rumahan.",
-    emoji: "🧆", bg: "#FBE5D4" }
+  { id: "kopi-sumedang", route: "smd-bdg", cat: "kopi", tag: "baru",
+    name: "Kopi Sumedang", where: "Kebun kopi di Sumedang",
+    desc: "Kopi dari kebun di lereng gunung Sumedang.",
+    variants: ["Biji kopi", "Bubuk"] }
 ];
