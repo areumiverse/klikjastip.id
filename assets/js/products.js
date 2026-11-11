@@ -6,17 +6,26 @@
  *  cat     : kue | camilan | kopi | fashion | skincare | harian
  *  tag     : (opsional) catatan kecil tulisan tangan di samping nama
  *  variants: (opsional) pilihan yang bisa dipilih pelanggan
- *  img     : (opsional) foto produk, contoh "assets/img/produk/bolen.jpg"
+ *  img     : (opsional) foto produk. Bisa satu foto atau beberapa (jadi galeri):
+ *              img: "assets/img/produk/bolen.jpg"
+ *              img: ["assets/img/produk/bolen-1.jpg", "assets/img/produk/bolen-2.jpg"]
+ *            Kalau img tidak diisi, website otomatis mencari foto bernama
+ *            assets/img/produk/<id>.jpg  (mis. assets/img/produk/tahu-sumedang.jpg).
+ *            Kalau fotonya belum ada, kartu menampilkan ilustrasi kategori.
+ *            Saran: foto persegi/4:3, lebar ±800px, ukuran file < 200 KB.
  */
 window.KJ_CONFIG = {
   waNumber: "6285536584366",
   waDisplay: "0855 3658 4366",
-  // day: 0 = Minggu ... 6 = Sabtu
+  // Jadwal rutin mingguan. Tanggalnya dihitung otomatis dari kalender (WIB)
+  // dan berganti sendiri setiap hari.
+  // day : 0 = Minggu, 1 = Senin, 2 = Selasa, 3 = Rabu, 4 = Kamis, 5 = Jumat, 6 = Sabtu
+  // time: keterangan jam (boleh dikosongkan), mis. "pagi", "sore"
   schedule: [
-    { day: 1, label: "Senin",      short: "Sen",       dest: "Bandung",  route: "smd-bdg" },
-    { day: 3, label: "Rabu sore",  short: "Rab sore",  dest: "Sumedang", route: "bdg-smd" },
-    { day: 4, label: "Kamis pagi", short: "Kam pagi",  dest: "Bandung",  route: "smd-bdg" },
-    { day: 5, label: "Jumat sore", short: "Jum sore",  dest: "Sumedang", route: "bdg-smd" }
+    { day: 1, time: "",     dest: "Bandung",  route: "smd-bdg" },
+    { day: 3, time: "sore", dest: "Sumedang", route: "bdg-smd" },
+    { day: 4, time: "pagi", dest: "Bandung",  route: "smd-bdg" },
+    { day: 5, time: "sore", dest: "Sumedang", route: "bdg-smd" }
   ]
 };
 
