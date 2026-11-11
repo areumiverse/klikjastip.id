@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>KlikJastip.id — Jasa Titip Bandung ⇄ Sumedang</title>
+  <meta name="description" content="KlikJastip.id: jasa titip belanja Bandung ⇄ Sumedang. Bolen Kartika Sari, Brownies Amanda, kopi viral Bandung, Tahu Sumedang, Ubi Cilembu, dan lainnya. Klik, Titip, Sampai!">
+  <meta name="theme-color" content="#1C3A6B">
+  <meta property="og:title" content="KlikJastip.id — Jasa Titip Bandung ⇄ Sumedang">
+  <meta property="og:description" content="Klik, Titip, Sampai! Pilih produk, isi form, pesanan langsung terkirim ke WhatsApp.">
+  <meta property="og:image" content="assets/img/logo.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/img/icon-192.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="header" id="top">
+  <div class="container header__inner">
+    <a href="#top" class="header__logo" aria-label="KlikJastip.id beranda">
+      <img src="assets/img/logo-sm.png" alt="KlikJastip.id" width="480" height="206">
+    </a>
+    <nav class="nav" aria-label="Navigasi utama">
+      <a href="#katalog">Katalog</a>
+      <a href="#cara">Cara Titip</a>
+      <a href="#jadwal">Jadwal</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <button class="cart-btn" type="button" data-open-cart aria-label="Buka keranjang titipan">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7V6a6 6 0 0 1 12 0v1h2.2a1 1 0 0 1 1 1.1l-1.3 12A2 2 0 0 1 17.9 22H6.1a2 2 0 0 1-2-1.9L2.8 8.1A1 1 0 0 1 3.8 7H6Zm2 0h8V6a4 4 0 0 0-8 0v1Z"/></svg>
+      <span class="cart-btn__count" data-cart-count>0</span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__text">
+        <span class="pill pill--pin">📍 Jasa Titip Bandung ⇄ Sumedang</span>
+        <h1>Klik, Titip, <span class="hl">Sampai!</span></h1>
+        <p class="hero__lead">Mau oleh-oleh Bandung tapi tinggal di Sumedang? Kangen Tahu Sumedang tapi lagi di Bandung? Pilih produknya di sini, isi form, dan pesananmu langsung terkirim ke WhatsApp kami.</p>
+        <div class="hero__cta">
+          <a href="#katalog" class="btn btn--primary btn--lg">Mulai Titip 🛍️</a>
+          <a href="#" class="btn btn--ghost btn--lg" data-wa-direct>
+            <svg class="ico-wa" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3s.8-2.2 1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.3 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.1.1.6-.1 1.3Z"/></svg>
+            Chat Admin
+          </a>
+        </div>
+        <ul class="hero__trust">
+          <li>✅ Aman & Terpercaya</li>
+          <li>📦 Dikemas Rapi</li>
+          <li>🗓️ Jalan 4× Seminggu</li>
+        </ul>
+      </div>
+
+      <div class="route-visual" aria-hidden="true">
+        <div class="route-visual__card">
+          <div class="route-visual__city">
+            <span class="city-pin">📍</span>
+            <strong>Bandung</strong>
+            <small>Kota Kembang</small>
+          </div>
+          <div class="route-visual__road">
+            <span class="road-line"></span>
+            <span class="scooter">🛵</span>
+          </div>
+          <div class="route-visual__city">
+            <span class="city-pin">📍</span>
+            <strong>Sumedang</strong>
+            <small>Kota Tahu</small>
+          </div>
+        </div>
+        <div class="next-trip" data-next-trip></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RUTE ============ -->
+  <section class="section section--tight" id="rute">
+    <div class="container">
+      <div class="route-cards">
+        <button class="route-card route-card--bdg" type="button" data-route-pick="bdg-smd">
+          <span class="route-card__tag">Rute 01</span>
+          <h3>Bandung → Sumedang</h3>
+          <p><strong>Bandung Shopping.</strong> Bolen Kartika Sari, Brownies Amanda, batagor, keripik Maicih, Cibaduyut, skincare & belanja supermarket.</p>
+          <span class="route-card__go">Lihat produk →</span>
+        </button>
+        <button class="route-card route-card--smd" type="button" data-route-pick="smd-bdg">
+          <span class="route-card__tag">Rute 02</span>
+          <h3>Sumedang → Bandung</h3>
+          <p><strong>Sumedang Local Picks.</strong> Tahu Sumedang, Ubi Cilembu, Opak Ketan, Keripik Ubi, Kopi Sumedang, Bolu Aren & Sale Pisang.</p>
+          <span class="route-card__go">Lihat produk →</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KATALOG ============ -->
+  <section class="section catalog" id="katalog">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">Katalog Titipan</span>
+        <h2>Mau Titip Apa Hari Ini?</h2>
+        <p>Harga mengikuti harga toko + biaya jastip, dikonfirmasi admin via WhatsApp sebelum kamu bayar.</p>
+      </div>
+
+      <div class="filters" data-filters>
+        <div class="seg" role="tablist" aria-label="Pilih rute">
+          <button class="seg__btn" type="button" role="tab" data-route="all">Semua Rute</button>
+          <button class="seg__btn" type="button" role="tab" data-route="bdg-smd">Bdg → Smd</button>
+          <button class="seg__btn" type="button" role="tab" data-route="smd-bdg">Smd → Bdg</button>
+        </div>
+        <label class="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2a8 8 0 0 1 6.3 12.9l5.4 5.4-1.4 1.4-5.4-5.4A8 8 0 1 1 10 2Zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12Z"/></svg>
+          <input type="search" placeholder="Cari bolen, tahu, kopi…" data-search aria-label="Cari produk">
+        </label>
+        <div class="chips" data-chips></div>
+      </div>
+
+      <div class="grid" data-grid></div>
+      <p class="empty" data-empty hidden>Produk tidak ditemukan. Tenang, kamu tetap bisa <button type="button" class="link" data-open-custom>titip barang lain</button> 😉</p>
+
+      <div class="custom-cta">
+        <div>
+          <h3>Barang yang kamu cari tidak ada?</h3>
+          <p>Titip apa saja dari Bandung atau Sumedang — tulis nama barang & tokonya, kami carikan.</p>
+        </div>
+        <button class="btn btn--accent" type="button" data-open-custom>+ Titip Barang Lain</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CARA TITIP ============ -->
+  <section class="section section--soft" id="cara">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">Gampang Banget</span>
+        <h2>Cara Titipnya</h2>
+      </div>
+      <ol class="steps">
+        <li class="step">
+          <span class="step__num">1</span>
+          <span class="step__ico">🛍️</span>
+          <h3>Pilih Produk</h3>
+          <p>Klik <b>+ Titip</b> pada produk yang kamu mau, atau tambahkan barang lain sendiri.</p>
+        </li>
+        <li class="step">
+          <span class="step__num">2</span>
+          <span class="step__ico">📝</span>
+          <h3>Isi Form</h3>
+          <p>Lengkapi nama, alamat, dan pilih jadwal pengantaran yang kamu inginkan.</p>
+        </li>
+        <li class="step">
+          <span class="step__num">3</span>
+          <span class="step__ico">💬</span>
+          <h3>Kirim ke WhatsApp</h3>
+          <p>Pesanan otomatis tersusun rapi di WhatsApp. Admin konfirmasi harga & pembayaran.</p>
+        </li>
+        <li class="step">
+          <span class="step__num">4</span>
+          <span class="step__ico">🛵</span>
+          <h3>Barang Sampai</h3>
+          <p>Kami belanjakan dan antarkan ke alamatmu sesuai jadwal perjalanan.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ JADWAL ============ -->
+  <section class="section" id="jadwal">
+    <div class="container jadwal">
+      <div class="jadwal__info">
+        <span class="eyebrow">Jadwal Rutin</span>
+        <h2>Jadwal Perjalanan</h2>
+        <p>Kami bolak-balik Bandung ⇄ Sumedang setiap minggu. Pesan paling lambat <b>H-1 sebelum jadwal</b> supaya kebagian slot belanja.</p>
+        <ul class="sched" data-schedule></ul>
+        <div class="tip">
+          📲 <span>Simpan nomor <b data-wa-display>0855 3658 4366</b> dan cek selalu <b>Status WhatsApp</b> kami untuk info jadwal, katalog, dan promo terbaru.</span>
+        </div>
+      </div>
+      <figure class="poster">
+        <img src="assets/img/poster.png" alt="Brosur KlikJastip.id: kategori titipan, cara titip, dan jadwal rutin perjalanan" loading="lazy" width="493" height="658">
+        <figcaption><a href="assets/img/poster.png" download="Brosur-KlikJastip.png">⬇️ Unduh brosur</a></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section section--soft" id="faq">
+    <div class="container faq">
+      <div class="section__head">
+        <span class="eyebrow">FAQ</span>
+        <h2>Pertanyaan yang Sering Ditanya</h2>
+      </div>
+      <details>
+        <summary>Berapa harga dan biaya jastipnya?</summary>
+        <p>Harga produk mengikuti harga di toko, ditambah biaya jastip & ongkir sesuai jumlah dan alamat. Admin akan mengirim total biayanya lewat WhatsApp sebelum kamu membayar.</p>
+      </details>
+      <details>
+        <summary>Kapan saya harus bayar?</summary>
+        <p>Setelah admin mengonfirmasi ketersediaan barang dan total harga. Pembayaran bisa via transfer bank atau e-wallet (detail dikirim admin).</p>
+      </details>
+      <details>
+        <summary>Bisa titip barang yang tidak ada di katalog?</summary>
+        <p>Bisa! Klik <b>Titip Barang Lain</b>, tulis nama barang, toko/lokasi, dan detailnya. Kirim juga foto atau link produknya via WhatsApp agar tidak salah beli.</p>
+      </details>
+      <details>
+        <summary>Apakah makanan basah & frozen aman?</summary>
+        <p>Makanan dikemas rapi dan dibawa sesuai jadwal perjalanan supaya tetap segar. Untuk frozen food kami sarankan memilih produk yang dikemas vakum.</p>
+      </details>
+      <details>
+        <summary>Area mana saja yang dilayani?</summary>
+        <p>Area Kota Bandung dan Kabupaten Sumedang. Untuk alamat di luar area tersebut, tanyakan dulu ke admin ya.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="final-cta">
+        <div>
+          <h2>Titip Sekarang!</h2>
+          <p>Admin siap membantu kamu belanja Bandung ⇄ Sumedang.</p>
+        </div>
+        <a href="#" class="btn btn--wa btn--lg" data-wa-direct>
+          <svg class="ico-wa" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3s.8-2.2 1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.3 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.1.1.6-.1 1.3Z"/></svg>
+          <span data-wa-display>0855 3658 4366</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <img src="assets/img/icon-192.png" alt="" width="64" height="63" loading="lazy">
+    <div>
+      <strong>KlikJastip.id</strong>
+      <p>Jasa Titip Bandung ⇄ Sumedang · Klik, Titip, Sampai!</p>
+    </div>
+    <p class="footer__copy">© <span data-year></span> KlikJastip.id</p>
+  </div>
+</footer>
+
+<!-- ============ FLOATING CART BAR (mobile) ============ -->
+<div class="cartbar" data-cartbar hidden>
+  <button type="button" class="cartbar__btn" data-open-cart>
+    <span class="cartbar__count"><b data-cart-count>0</b> barang</span>
+    <span class="cartbar__label">Lanjut Pesan →</span>
+  </button>
+</div>
+
+<!-- ============ CART / CHECKOUT DRAWER ============ -->
+<div class="drawer" data-drawer aria-hidden="true">
+  <div class="drawer__backdrop" data-close-cart></div>
+  <section class="drawer__panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+    <header class="drawer__head">
+      <span class="drawer__grip" aria-hidden="true"></span>
+      <h2 id="drawer-title">Daftar Titipan</h2>
+      <button type="button" class="icon-btn" data-close-cart aria-label="Tutup">✕</button>
+    </header>
+
+    <div class="drawer__body">
+      <div data-cart-items></div>
+      <button type="button" class="btn btn--outline btn--block" data-open-custom>+ Titip Barang Lain</button>
+
+      <form class="form" data-form novalidate>
+        <h3 class="form__title">Data Pemesan</h3>
+
+        <div class="field">
+          <label for="f-name">Nama lengkap *</label>
+          <input id="f-name" name="fullname" autocomplete="name" required placeholder="Contoh: Siti Nurhaliza">
+        </div>
+        <div class="field">
+          <label for="f-phone">Nomor WhatsApp *</label>
+          <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="08xx xxxx xxxx">
+        </div>
+        <div class="field">
+          <label for="f-address">Alamat pengantaran *</label>
+          <textarea id="f-address" name="address" rows="3" autocomplete="street-address" required placeholder="Jalan, No. rumah, RT/RW, Kelurahan, Kecamatan"></textarea>
+        </div>
+        <div class="field" data-field-schedule></div>
+        <div class="field">
+          <label for="f-delivery">Metode terima barang</label>
+          <select id="f-delivery" name="delivery">
+            <option>Diantar ke alamat</option>
+            <option>Ambil di titik temu (COD)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-note">Catatan tambahan</label>
+          <textarea id="f-note" name="note" rows="2" placeholder="Misal: budget maks, patokan rumah, jam bisa dihubungi"></textarea>
+        </div>
+
+        <p class="form__hint">Harga & ongkir akan dikonfirmasi admin di WhatsApp. Belum ada pembayaran di tahap ini.</p>
+        <p class="form__error" data-form-error role="alert" hidden></p>
+
+        <button type="submit" class="btn btn--wa btn--block btn--lg">
+          <svg class="ico-wa" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3s.8-2.2 1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.3 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.1.1.6-.1 1.3Z"/></svg>
+          Kirim Pesanan via WhatsApp
+        </button>
+
+        <div class="sent" data-sent hidden>
+          <b>📲 Pesanan sudah dibuka di WhatsApp.</b>
+          <p>Pastikan kamu menekan tombol <b>Kirim</b> di WhatsApp ya. WhatsApp tidak terbuka? Tekan tombol hijau di atas sekali lagi.</p>
+          <button type="button" class="btn btn--outline btn--block" data-clear-cart>Selesai &amp; kosongkan daftar titipan</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>
+
+<!-- ============ CUSTOM ITEM MODAL ============ -->
+<div class="modal" data-custom-modal aria-hidden="true">
+  <div class="modal__backdrop" data-close-custom></div>
+  <form class="modal__panel" data-custom-form role="dialog" aria-modal="true" aria-labelledby="custom-title" novalidate>
+    <header class="drawer__head">
+      <h2 id="custom-title">Titip Barang Lain</h2>
+      <button type="button" class="icon-btn" data-close-custom aria-label="Tutup">✕</button>
+    </header>
+    <div class="field">
+      <label>Rute *</label>
+      <div class="seg seg--full">
+        <label class="seg__radio"><input type="radio" name="route" value="bdg-smd" checked><span>Bandung → Sumedang</span></label>
+        <label class="seg__radio"><input type="radio" name="route" value="smd-bdg"><span>Sumedang → Bandung</span></label>
+      </div>
+    </div>
+    <div class="field">
+      <label for="c-name">Nama barang *</label>
+      <input id="c-name" name="item" required placeholder="Contoh: Serum Somethinc 20ml">
+    </div>
+    <div class="field">
+      <label for="c-store">Toko / lokasi beli</label>
+      <input id="c-store" name="store" placeholder="Contoh: Paris Van Java / Cibaduyut">
+    </div>
+    <div class="field field--row">
+      <div>
+        <label for="c-qty">Jumlah</label>
+        <input id="c-qty" name="qty" type="number" min="1" value="1" inputmode="numeric">
+      </div>
+      <div>
+        <label for="c-note">Detail (ukuran/warna/varian)</label>
+        <input id="c-note" name="note" placeholder="Opsional">
+      </div>
+    </div>
+    <button type="submit" class="btn btn--primary btn--block btn--lg">Tambahkan ke Titipan</button>
+  </form>
+</div>
+
+<!-- Floating WhatsApp (desktop) -->
+<a href="#" class="fab-wa" data-wa-direct aria-label="Chat WhatsApp KlikJastip">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3s.8-2.2 1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.3 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.3.1.1.1.6-.1 1.3Z"/></svg>
+</a>
+
+<div class="toast" data-toast role="status" aria-live="polite"></div>
+
+<script src="assets/js/products.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

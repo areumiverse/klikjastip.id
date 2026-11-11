@@ -1,0 +1,9 @@
+{
+  "name": "KlikJastip.id — Jasa Titip Bandung ⇄ Sumedang",
+  "short_name": "KlikJastip",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#1C3A6B",
+  "icons": [{ "src": "assets/img/icon-192.png", "sizes": "192x190", "type": "image/png" }]
+}
