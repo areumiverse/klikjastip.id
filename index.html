@@ -14,7 +14,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=Figtree:wght@400;500;600;700&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -27,6 +27,7 @@
     <nav class="top__nav" aria-label="Menu">
       <a href="#barang">Barang</a>
       <a href="#cara">Cara titip</a>
+      <a href="#bayar">Pembayaran</a>
       <a href="#tanya">Tanya-tanya</a>
     </nav>
     <button type="button" class="top__nota" data-open-cart>
@@ -53,13 +54,24 @@
             Mau titip barang dari Sumedang
           </button>
         </div>
+        <ul class="points">
+          <li>Harga dikabari dulu, baru bayar</li>
+          <li>Jalan 4 kali seminggu</li>
+          <li>Diantar sampai alamat</li>
+        </ul>
         <p class="intro__alt">Mau tanya dulu? <a href="#" data-wa-direct>Chat kami di WhatsApp</a></p>
       </div>
 
-      <aside class="page" aria-labelledby="jadwal-title">
-        <h2 id="jadwal-title" class="hand">Jadwal jalan minggu ini</h2>
+      <aside class="sched" aria-labelledby="jadwal-title">
+        <div class="sched__head">
+          <div>
+            <h2 id="jadwal-title">Jadwal jalan</h2>
+            <p class="sched__today" data-today></p>
+          </div>
+          <span class="sched__live" title="Tanggal berganti otomatis setiap hari">Otomatis</span>
+        </div>
         <ul class="trips" data-schedule></ul>
-        <p class="hand page__note">Pesan paling lambat sehari sebelumnya ya.</p>
+        <p class="sched__deadline" data-deadline aria-live="polite"></p>
       </aside>
     </div>
   </section>
@@ -97,13 +109,38 @@
           <li><b>Pilih barang</b> dari daftar di atas, atau tulis barang lain yang kamu mau.</li>
           <li><b>Isi nama dan alamat</b>, lalu pilih jadwal antar yang paling cocok.</li>
           <li><b>Kirim ke WhatsApp.</b> Pesananmu sudah tersusun rapi, kamu tinggal tekan kirim.</li>
-          <li><b>Kami balas dengan total harga</b> (harga toko + ongkos titip). Setelah kamu transfer, barangnya kami belikan.</li>
+          <li><b>Kami balas dengan total harga</b> (harga toko + ongkos titip). Bayar lewat <a href="#bayar">QRIS</a>, kirim buktinya, lalu barangnya kami belikan.</li>
           <li><b>Barang diantar</b> ke alamatmu sesuai jadwal jalan.</li>
         </ol>
       </div>
       <figure class="flyer">
         <img src="assets/img/poster.png" alt="Brosur KlikJastip.id berisi kategori titipan, cara titip, dan jadwal rutin" loading="lazy" width="493" height="658">
         <figcaption>Brosur kami. <a href="assets/img/poster.png" download="Brosur-KlikJastip.png">Simpan gambarnya</a> buat dibagikan ke grup keluarga.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Pembayaran -->
+  <section class="pay" id="bayar">
+    <div class="wrap pay__in">
+      <div class="pay__text">
+        <p class="pay__kicker">Pembayaran</p>
+        <h2>Bayar pakai QRIS, dari aplikasi apa saja</h2>
+        <p class="pay__lead">Satu kode untuk GoPay, OVO, DANA, ShopeePay, LinkAja, dan semua m-banking.</p>
+        <ol class="pay__steps">
+          <li><b>Tunggu total dari kami</b> di WhatsApp. Jangan bayar sebelum totalnya kami kirim.</li>
+          <li><b>Scan kode QRIS</b> dengan aplikasi e-wallet atau m-banking. Buka web ini dari HP? Simpan gambarnya, lalu pilih "upload dari galeri" di aplikasimu.</li>
+          <li><b>Masukkan nominal</b> persis sama dengan total dari kami.</li>
+          <li><b>Kirim bukti bayar</b> (screenshot) ke WhatsApp kami. Barangnya langsung kami belikan.</li>
+        </ol>
+        <p class="pay__check">Sebelum bayar, pastikan nama penerimanya <b>KLIKJASTIP.ID, Service</b> (NMID ID1026636620613).</p>
+      </div>
+      <figure class="qris">
+        <img src="assets/img/qris.png" alt="Kode QRIS KlikJastip.id, atas nama KLIKJASTIP.ID, Service, NMID ID1026636620613" width="874" height="1240" loading="lazy">
+        <figcaption>
+          <a class="btn btn--ink" href="assets/img/qris.png" download="QRIS-KlikJastip.png">Simpan gambar QRIS</a>
+          <button type="button" class="btn btn--wa" data-wa-paid>Kirim bukti bayar</button>
+        </figcaption>
       </figure>
     </div>
   </section>
@@ -118,7 +155,7 @@
       </details>
       <details>
         <summary>Bayarnya kapan dan lewat apa?</summary>
-        <p>Setelah kami konfirmasi stok dan totalnya. Nomor rekening atau e-wallet kami kirim lewat WhatsApp.</p>
+        <p>Setelah kami konfirmasi stok dan totalnya di WhatsApp. Pembayaran lewat <a href="#bayar">QRIS</a>, bisa dari e-wallet atau m-banking apa saja. Jangan lupa kirim bukti bayarnya ke kami.</p>
       </details>
       <details>
         <summary>Boleh titip barang yang tidak ada di daftar?</summary>
@@ -199,10 +236,11 @@
 
         <p class="form__err" data-form-error role="alert" hidden></p>
         <button type="submit" class="btn btn--wa">Kirim pesanan ke WhatsApp</button>
-        <p class="form__small">Belum ada pembayaran di sini. Kami balas dulu dengan total harganya.</p>
+        <p class="form__small">Belum ada pembayaran di sini. Kami balas dulu dengan total harganya, lalu kamu bayar lewat QRIS.</p>
 
         <div class="sent" data-sent hidden>
           <p><b>WhatsApp sudah terbuka.</b> Jangan lupa tekan kirim di sana. Kalau WhatsApp tidak terbuka, tekan tombol hijau sekali lagi.</p>
+          <p>Setelah totalnya kami kirim, bayar lewat <a href="#bayar" data-goto-pay>QRIS di halaman ini</a>.</p>
           <button type="button" class="btn btn--line" data-clear-cart>Sudah terkirim, kosongkan nota</button>
         </div>
       </form>
@@ -245,6 +283,18 @@
       <button type="submit" class="btn btn--ink">Masukkan ke nota</button>
     </div>
   </form>
+</div>
+
+<!-- Detail barang + foto besar -->
+<div class="sheet sheet--small sheet--detail" data-detail-modal aria-hidden="true">
+  <div class="sheet__shade"></div>
+  <section class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="detail-title">
+    <div class="sheet__head">
+      <h2 id="detail-title" data-detail-title>Detail barang</h2>
+      <button type="button" class="x" data-close-sheet aria-label="Tutup detail">Tutup</button>
+    </div>
+    <div class="sheet__body" data-detail-body></div>
+  </section>
 </div>
 
 <div class="toast" data-toast role="status" aria-live="polite"></div>
