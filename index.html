@@ -95,7 +95,7 @@
 
       <div class="other">
         <p><b>Yang kamu cari tidak ada di daftar?</b> Tulis saja nama barang dan tokonya. Selama ada di Bandung atau Sumedang, kami carikan.</p>
-        <button type="button" class="btn btn--line" data-open-custom>Tulis barang lain</button>
+        <button type="button" class="btn btn--line" data-open-custom>Minta dicarikan</button>
       </div>
     </div>
   </section>
@@ -106,7 +106,7 @@
       <div>
         <h2>Cara titip</h2>
         <ol class="how__list">
-          <li><b>Pilih barang</b> dari daftar di atas, atau tulis barang lain yang kamu mau.</li>
+          <li><b>Pilih barang</b> dari daftar di atas, atau minta kami carikan barang yang tidak ada di daftar.</li>
           <li><b>Isi nama dan alamat</b>, lalu pilih jadwal antar yang paling cocok.</li>
           <li><b>Kirim ke WhatsApp.</b> Pesananmu sudah tersusun rapi, kamu tinggal tekan kirim.</li>
           <li><b>Kami balas dengan total harga</b> (harga toko + ongkos titip). Bayar lewat <a href="#bayar">QRIS</a>, kirim buktinya, lalu barangnya kami belikan.</li>
@@ -159,7 +159,7 @@
       </details>
       <details>
         <summary>Boleh titip barang yang tidak ada di daftar?</summary>
-        <p>Boleh. Tekan "Tulis barang lain", isi nama barang dan tokonya. Kalau bisa, kirim juga foto atau link-nya supaya kami tidak salah beli.</p>
+        <p>Boleh. Tekan "Minta dicarikan", isi nama barang dan tokonya kalau tahu. Tempel juga link-nya, atau kirim fotonya lewat WhatsApp, supaya kami tidak salah beli.</p>
       </details>
       <details>
         <summary>Makanan basah dan frozen aman tidak?</summary>
@@ -204,7 +204,14 @@
     <div class="sheet__body">
       <div class="nota">
         <div data-cart-items></div>
-        <button type="button" class="nota__add" data-open-custom>+ tulis barang lain</button>
+        <div class="nota__more">
+          <button type="button" class="nota__add" data-open-picker>
+            <b>+ Pilih dari katalog</b>
+          </button>
+          <button type="button" class="nota__add nota__add--find" data-open-custom>
+            <b>+ Minta dicarikan</b>
+          </button>
+        </div>
       </div>
 
       <form class="form" data-form novalidate>
@@ -271,17 +278,37 @@
   </section>
 </div>
 
-<!-- Barang lain -->
+<!-- Pilih dari katalog (dibuka dari nota) -->
+<div class="sheet sheet--small sheet--picker" data-picker-modal aria-hidden="true">
+  <div class="sheet__shade"></div>
+  <section class="sheet__panel" role="dialog" aria-modal="true" aria-labelledby="picker-title">
+    <div class="sheet__head">
+      <h2 id="picker-title">Pilih dari katalog</h2>
+      <button type="button" class="x" data-close-sheet aria-label="Selesai memilih">Selesai</button>
+    </div>
+    <div class="picker__bar">
+      <div class="picker__tabs" data-picker-tabs></div>
+      <label class="find">
+        <span class="sr">Cari barang</span>
+        <input type="search" placeholder="Cari barang…" data-picker-search>
+      </label>
+    </div>
+    <div class="sheet__body" data-picker-list></div>
+  </section>
+</div>
+
+<!-- Minta dicarikan -->
 <div class="sheet sheet--small" data-custom-modal aria-hidden="true">
   <div class="sheet__shade" data-close-custom></div>
   <form class="sheet__panel" data-custom-form role="dialog" aria-modal="true" aria-labelledby="custom-title" novalidate>
     <div class="sheet__head">
-      <h2 id="custom-title">Tulis barang lain</h2>
+      <h2 id="custom-title">Minta dicarikan</h2>
       <button type="button" class="x" data-close-custom aria-label="Tutup">Tutup</button>
     </div>
     <div class="sheet__body">
+      <p class="find__intro">Tidak ada di website? Tulis saja, kami carikan.</p>
       <fieldset class="f">
-        <legend>Dibeli di mana?</legend>
+        <legend>Dicarikan di mana?</legend>
         <label class="radio"><input type="radio" name="route" value="bdg-smd" checked> Di Bandung, antar ke Sumedang</label>
         <label class="radio"><input type="radio" name="route" value="smd-bdg"> Di Sumedang, antar ke Bandung</label>
       </fieldset>
@@ -292,6 +319,10 @@
       <div class="f">
         <label for="c-store">Toko atau tempat beli <span class="opt">kalau tahu</span></label>
         <input id="c-store" name="store" placeholder="mis. Paris Van Java">
+      </div>
+      <div class="f">
+        <label for="c-link">Link atau referensi <span class="opt">kalau ada</span></label>
+        <input id="c-link" name="link" inputmode="url" placeholder="Link IG, TikTok, Shopee, dll.">
       </div>
       <div class="f f--two">
         <div>

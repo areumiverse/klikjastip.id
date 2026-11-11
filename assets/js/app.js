@@ -279,16 +279,19 @@
 
   const activeRoutes = () => Object.keys(ROUTES).filter((r) => state.cart.some((i) => routeOf(i) === r));
 
+  const TRASH = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3"/></svg>';
+
   function notaLine(i) {
     const p = i.custom ? null : byId[i.id];
     const name = i.custom ? i.custom.name : p.name;
     const extra = i.custom ? i.custom.store : i.variant;
-    return `<div class="nota__line">
-      <span class="nota__what">${esc(name)}${extra ? ` <small>(${esc(extra)})</small>` : ""}</span>
+    return `<div class="nota__line${i.custom ? " is-find" : ""}">
+      <span class="nota__what">${i.custom ? `<span class="nota__find">dicarikan</span>` : ""}${esc(name)}${extra ? ` <small>(${esc(extra)})</small>` : ""}</span>
       <span class="nota__ctl" data-qty-for="${esc(i.key)}">
         <button type="button" data-dec aria-label="Kurangi ${esc(name)}">−</button>
         <output>×${i.qty}</output>
         <button type="button" data-inc aria-label="Tambah ${esc(name)}">+</button>
+        <button type="button" class="nota__del" data-remove aria-label="Hapus ${esc(name)} dari nota" title="Hapus">${TRASH}</button>
       </span>
       <input class="nota__note" data-note="${esc(i.key)}" value="${esc(i.note)}" placeholder="catatan: ukuran, rasa, merek…" aria-label="Catatan untuk ${esc(name)}">
     </div>`;
@@ -340,12 +343,54 @@
     renderCount();
   }
   function closeNota() { close($("[data-drawer]")); renderCount(); }
-  function openCustom() {
+  function openCustom(name, route) {
     const f = $("[data-custom-form]");
     f.reset();
-    f.route.value = state.route;
+    f.route.value = route || state.route;
+    if (name) f.item.value = name;
     open($("[data-custom-modal]"));
     setTimeout(() => f.item.focus(), 280);
+  }
+
+  /* ---------- pilih dari katalog (dibuka dari nota) ---------- */
+  const picker = { route: null, q: "" };
+
+  function pickerRow(p) {
+    return `<li class="pk">
+      <span class="pk__pic">${artHTML(p, photos(p)[0])}</span>
+      <span class="pk__info">
+        <b>${esc(p.name)}</b><small>${esc(p.where)}</small>
+        ${varHTML(p)}
+      </span>
+      <span class="pk__act" data-act="${p.id}">${actHTML(p)}</span>
+    </li>`;
+  }
+
+  function renderPicker() {
+    $("[data-picker-tabs]").innerHTML = Object.entries(ROUTES).map(([id, r]) =>
+      `<button type="button" class="cat" aria-pressed="${picker.route === id}" data-picker-route="${id}">${esc(r.tab)}</button>`).join("");
+    const q = picker.q.trim().toLowerCase();
+    const list = PRODUCTS.filter((p) => p.route === picker.route && matches(p, q));
+    const findBtn = `<button type="button" class="pk__find" data-picker-find>
+        <b>+ Tidak ada? Minta dicarikan</b></button>`;
+    if (!list.length) {
+      $("[data-picker-list]").innerHTML = `<p class="pk__empty">Tidak ada barang yang cocok.</p>${findBtn}`;
+      return;
+    }
+    const groups = {};
+    list.forEach((p) => (groups[p.cat] = groups[p.cat] || []).push(p));
+    $("[data-picker-list]").innerHTML = Object.entries(groups).map(([c, items]) =>
+      `<p class="pk__cat">${esc(CATS[c])}</p><ul class="pk__list">${items.map(pickerRow).join("")}</ul>`).join("") + findBtn;
+  }
+
+  function openPicker() {
+    // mulai dari rute yang sudah ada di nota, supaya barangnya satu perjalanan
+    picker.route = activeRoutes()[0] || state.route;
+    picker.q = "";
+    $("[data-picker-search]").value = "";
+    renderPicker();
+    open($("[data-picker-modal]"));
+    $("[data-picker-list]").scrollTop = 0;
   }
 
   let tt;
@@ -372,9 +417,10 @@
       L.push(`*${ROUTES[r].short}*`);
       state.cart.filter((i) => routeOf(i) === r).forEach((i, n) => {
         const name = i.custom
-          ? i.custom.name + (i.custom.store ? ` (di ${i.custom.store})` : "")
+          ? `[minta dicarikan] ${i.custom.name}` + (i.custom.store ? ` (di ${i.custom.store})` : "")
           : byId[i.id].name + (i.variant ? `, ${i.variant}` : "");
         L.push(`${n + 1}. ${name} x${i.qty}${i.note ? ` (${i.note})` : ""}`);
+        if (i.custom && i.custom.link) L.push(`   Referensi: ${i.custom.link}`);
       });
       if (d.sched[r]) L.push(`Jadwal antar: ${d.sched[r]}`);
       L.push("");
@@ -470,6 +516,12 @@
         return;
       }
       if (t.matches("[data-close-sheet]")) return close(t.closest(".sheet"));
+      if (t.matches("[data-remove]")) {
+        const it = findItem(t.closest("[data-qty-for]").dataset.qtyFor);
+        if (!it) return;
+        toast(`${it.custom ? it.custom.name : byId[it.id].name} dihapus dari nota`);
+        return setQty(it.key, -it.qty);
+      }
       if (t.matches("[data-inc], [data-dec]")) return setQty(t.closest("[data-qty-for]").dataset.qtyFor, t.matches("[data-inc]") ? 1 : -1);
       if (t.matches("[data-route]")) {
         state.route = t.dataset.route; state.cat = "all"; renderTabs(); return renderList();
@@ -483,6 +535,12 @@
       if (t.matches("[data-clear-cart]")) return clearNota();
       if (t.matches("[data-open-cart]")) return openNota();
       if (t.matches("[data-close-cart]")) return closeNota();
+      if (t.matches("[data-open-picker]")) return openPicker();
+      if (t.matches("[data-picker-route]")) { picker.route = t.dataset.pickerRoute; renderPicker(); $("[data-picker-list]").scrollTop = 0; return; }
+      if (t.matches("[data-picker-find]")) {
+        close($("[data-picker-modal]"));
+        return openCustom(picker.q.trim(), picker.route);
+      }
       if (t.matches("[data-open-custom]")) { e.preventDefault(); return openCustom(); }
       if (t.matches("[data-close-custom]")) return close($("[data-custom-modal]"));
       if (t.matches("[data-goto-pay]")) { closeNota(); return; }
@@ -519,6 +577,7 @@
     document.addEventListener("input", (e) => {
       const t = e.target;
       if (t.matches("[data-note]")) { const it = findItem(t.dataset.note); if (it) { it.note = t.value; save(); } }
+      if (t.matches("[data-picker-search]")) { picker.q = t.value; clearTimeout(t._d); t._d = setTimeout(renderPicker, 120); }
       if (t.matches("[data-search]")) { state.q = t.value; clearTimeout(t._d); t._d = setTimeout(renderList, 120); }
       t.classList.remove("bad");
     });
@@ -540,7 +599,7 @@
       state.cart.push({
         key: "lain-" + Date.now(), id: null, variant: null,
         qty: Math.max(1, parseInt(f.qty.value, 10) || 1), note: f.note.value.trim(),
-        custom: { name, store: f.store.value.trim(), route: f.route.value }
+        custom: { name, store: f.store.value.trim(), link: f.link.value.trim(), route: f.route.value }
       });
       close($("[data-custom-modal]"));
       toast(`${name} masuk nota`);
