@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>KlikJastip.id · Titip belanja Bandung–Sumedang</title>
   <meta name="description" content="Titip oleh-oleh dan belanjaan antara Bandung dan Sumedang. Pilih barangnya, isi alamat, pesanan masuk ke WhatsApp KlikJastip.">
-  <meta name="theme-color" content="#1F3B6E">
+  <meta name="theme-color" content="#0A3A6C">
   <meta property="og:title" content="KlikJastip.id · Titip belanja Bandung–Sumedang">
   <meta property="og:description" content="Bolen, brownies, kopi Bandung ke Sumedang. Tahu, ubi Cilembu, opak ke Bandung. Pesan lewat WhatsApp.">
   <meta property="og:image" content="assets/img/logo.png">
@@ -151,7 +151,7 @@
       <h2>Yang sering ditanyakan</h2>
       <details>
         <summary>Ongkos titipnya berapa?</summary>
-        <p>Tergantung jumlah dan ukuran barang, juga jarak alamatmu. Setelah pesananmu masuk, kami kirim rinciannya: harga di toko, ongkos titip, dan ongkir. Kamu baru bayar kalau sudah setuju.</p>
+        <p>Tergantung jumlah dan ukuran barang, juga cara terima barangnya. Setelah pesananmu masuk, kami kirim rinciannya: harga di toko, ongkos titip, dan ongkir (kurir kami, Paxel, atau ekspedisi). Kamu baru bayar kalau sudah setuju.</p>
       </details>
       <details>
         <summary>Bayarnya kapan dan lewat apa?</summary>
@@ -167,7 +167,7 @@
       </details>
       <details>
         <summary>Antarnya sampai mana saja?</summary>
-        <p>Kota Bandung dan Kabupaten Sumedang. Alamat di luar itu tanyakan dulu ke kami.</p>
+        <p>Kurir kami mengantar di Kota Bandung dan Kabupaten Sumedang. Untuk alamat di luar itu, barang bisa kami kirim lewat Paxel atau ekspedisi (JNE, J&amp;T, SiCepat, dll.) dengan ongkir ditanggung pemesan.</p>
       </details>
     </div>
   </section>
@@ -222,13 +222,36 @@
           <textarea id="f-address" name="address" rows="3" autocomplete="street-address" required placeholder="Jalan, nomor rumah, RT/RW, kelurahan, kecamatan"></textarea>
         </div>
         <div data-field-schedule></div>
-        <div class="f">
-          <label for="f-delivery">Terima barangnya</label>
-          <select id="f-delivery" name="delivery">
-            <option>Diantar ke alamat</option>
-            <option>Ketemuan di titik yang disepakati</option>
-          </select>
-        </div>
+        <fieldset class="f">
+          <legend>Terima barangnya</legend>
+          <div class="ship">
+            <label class="ship__opt">
+              <input type="radio" name="delivery" value="Diantar kurir KlikJastip ke alamat" checked>
+              <span class="ship__txt"><b>Diantar ke alamat</b><small>Kurir KlikJastip, Kota Bandung &amp; Kab. Sumedang. Ongkir antar dikabari bersama total.</small></span>
+            </label>
+            <label class="ship__opt">
+              <input type="radio" name="delivery" value="Ketemuan di titik yang disepakati">
+              <span class="ship__txt"><b>Ketemuan di titik yang disepakati</b><small>Tanpa ongkir antar.</small></span>
+            </label>
+            <label class="ship__opt">
+              <input type="radio" name="delivery" value="Dikirim lewat Paxel">
+              <span class="ship__txt"><b>Kirim lewat Paxel</b><small>Cocok untuk makanan dan frozen, sampai di hari yang sama. Ongkir Paxel ditanggung pemesan, kami cekkan tarifnya.</small></span>
+            </label>
+            <label class="ship__opt">
+              <input type="radio" name="delivery" value="Dikirim lewat ekspedisi">
+              <span class="ship__txt"><b>Kirim lewat ekspedisi</b><small>JNE, J&amp;T, SiCepat, dll. untuk alamat di luar Bandung–Sumedang. Ongkir ditanggung pemesan, kami cekkan tarifnya.</small></span>
+            </label>
+          </div>
+          <div class="ship__courier" data-meet hidden>
+            <label for="f-meet">Alamat titik ketemuan</label>
+            <textarea id="f-meet" name="meet" rows="2" placeholder="mis. Depan Alfamart Jatinangor, Jl. Raya Jatinangor No. 12. Boleh tempel link Google Maps"></textarea>
+            <p class="f__help">Tulis tempat yang mudah dicari. Jamnya kami sepakati lewat WhatsApp.</p>
+          </div>
+          <div class="ship__courier" data-courier hidden>
+            <label for="f-courier">Ekspedisi pilihan <span class="opt">boleh dikosongkan, nanti kami pilihkan yang paling murah</span></label>
+            <input id="f-courier" name="courier" placeholder="mis. JNE REG, J&amp;T, SiCepat">
+          </div>
+        </fieldset>
         <div class="f">
           <label for="f-note">Catatan <span class="opt">boleh dikosongkan</span></label>
           <textarea id="f-note" name="note" rows="2" placeholder="Patokan rumah, jam bisa dihubungi, batas budget"></textarea>
@@ -264,7 +287,7 @@
       </fieldset>
       <div class="f">
         <label for="c-name">Nama barang</label>
-        <input id="c-name" name="item" required placeholder="mis. Serum Somethinc 20 ml">
+        <input id="c-name" name="item" required placeholder="mis. Cireng isi frozen 2 pak">
       </div>
       <div class="f">
         <label for="c-store">Toko atau tempat beli <span class="opt">kalau tahu</span></label>

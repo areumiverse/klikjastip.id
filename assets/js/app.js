@@ -358,6 +358,7 @@
   }
 
   /* ---------- WhatsApp ---------- */
+  const MEET = "Ketemuan di titik yang disepakati";
   function openWA(text) {
     const url = `https://wa.me/${CFG.waNumber}?text=${encodeURIComponent(text)}`;
     const w = window.open(url, "_blank");
@@ -378,7 +379,10 @@
       if (d.sched[r]) L.push(`Jadwal antar: ${d.sched[r]}`);
       L.push("");
     });
-    L.push(`Nama: ${d.name}`, `No. WA: ${d.phone}`, `Alamat: ${d.address}`, `Terima barang: ${d.delivery}`);
+    const paid = /Paxel|ekspedisi/.test(d.delivery);
+    L.push(`Nama: ${d.name}`, `No. WA: ${d.phone}`, `Alamat: ${d.address}`,
+      `Terima barang: ${d.delivery}${d.courier ? ` (${d.courier})` : ""}${paid ? ", ongkir saya tanggung" : ""}`);
+    if (d.meet) L.push(`Titik ketemuan: ${d.meet}`);
     if (d.note) L.push(`Catatan: ${d.note}`);
     L.push("Pembayaran: QRIS (setelah total dikonfirmasi)");
     L.push("", "Tolong dikabari total harganya ya. Hatur nuhun.");
@@ -401,6 +405,8 @@
       phone: f.phone.value.trim(),
       address: f.address.value.trim(),
       delivery: f.delivery.value,
+      courier: f.delivery.value === "Dikirim lewat ekspedisi" ? f.courier.value.trim() : "",
+      meet: f.delivery.value === MEET ? f.meet.value.trim() : "",
       note: f.note.value.trim(),
       sched: {}
     };
@@ -412,6 +418,7 @@
     const digits = d.phone.replace(/\D/g, "");
     if (digits.length < 9 || digits.length > 15) { bad.push(f.phone); msgs.push("nomor WhatsApp"); }
     if (d.address.length < 8) { bad.push(f.address); msgs.push("alamat lengkap"); }
+    if (f.delivery.value === MEET && d.meet.length < 5) { bad.push(f.meet); msgs.push("alamat titik ketemuan"); }
     if (bad.length) {
       bad.forEach((el) => el.classList.add("bad"));
       err.textContent = `Isi dulu ${msgs.join(", ")} supaya kami bisa mengantar.`;
@@ -496,6 +503,11 @@
     });
 
     document.addEventListener("change", (e) => {
+      if (e.target.matches('input[name="delivery"]')) {
+        $("[data-courier]").hidden = e.target.value !== "Dikirim lewat ekspedisi";
+        $("[data-meet]").hidden = e.target.value !== MEET;
+        if (e.target.value === MEET) $("#f-meet").focus();
+      }
       if (e.target.matches("[data-variant]")) {
         const id = e.target.dataset.variant;
         state.pick[id] = e.target.value;

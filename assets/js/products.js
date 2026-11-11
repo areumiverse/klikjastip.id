@@ -3,7 +3,7 @@
  * ---------------------------------------------------------------
  *  route   : "bdg-smd" = dibeli di Bandung, diantar ke Sumedang
  *            "smd-bdg" = dibeli di Sumedang, diantar ke Bandung
- *  cat     : kue | camilan | kopi | fashion | skincare | harian
+ *  cat     : kue | camilan | kopi | harian
  *  tag     : (opsional) catatan kecil tulisan tangan di samping nama
  *  variants: (opsional) pilihan yang bisa dipilih pelanggan
  *  img     : (opsional) foto produk. Bisa satu foto atau beberapa (jadi galeri):
@@ -38,8 +38,6 @@ window.KJ_CATEGORIES = {
   kue: "Kue & roti",
   camilan: "Camilan & lauk",
   kopi: "Kopi",
-  fashion: "Sepatu & pakaian",
-  skincare: "Skincare",
   harian: "Belanja harian"
 };
 
@@ -71,13 +69,27 @@ window.KJ_PRODUCTS = [
     name: "Surabi Bandung", where: "Surabi Bandung",
     desc: "Paling enak dimakan hangat, jadi kami bungkus terpisah dari kuahnya." },
 
+  { id: "bolen-tjihapit", route: "bdg-smd", cat: "kue",
+    name: "Bolen Tjihapit", where: "Bolen Tjihapit",
+    desc: "Bolen dengan isian manis dan gurih. Pilih rasanya di bawah.",
+    variants: ["Pisang keju coklat", "Pisang nougat", "Coklat kacang", "Krim keju", "Nastar", "Smoke beef", "Daging sapi cincang"] },
+
+  { id: "tji-laki-9", route: "bdg-smd", cat: "kue", tag: "baru",
+    name: "Bolu & kue Tji Laki 9", where: "Tji Laki 9, Toko Bolu & Kue",
+    desc: "Bolu marmer bertabur crumble dalam kotak cantik, pas buat oleh-oleh. Tulis jenis bolunya di catatan." },
+
+  { id: "puln-kataifi", route: "bdg-smd", cat: "kue", tag: "baru",
+    name: "Puln Kataifi & Desserts", where: "Puln",
+    desc: "Kataifi gulung yang renyah dengan saus coklat, juga dessert box. Tulis menu yang dimau di catatan." },
+
+  { id: "tiramisusu-chocomory", route: "bdg-smd", cat: "kue",
+    name: "Tiramisusu by Chocomory", where: "Chocomory",
+    desc: "Kue tiramisu berlapis, oleh-oleh khas Bandung. Kami bawa dalam keadaan dingin.",
+    variants: ["Original", "Cookies n Cream", "Snow Mountain"] },
+
   { id: "batagor-frozen", route: "bdg-smd", cat: "camilan", tag: "laris",
     name: "Batagor & frozen food", where: "Batagor Riri, dll.",
     desc: "Kami pilih yang kemasan vakum supaya aman sampai Sumedang." },
-
-  { id: "keripik-maicih", route: "bdg-smd", cat: "camilan",
-    name: "Keripik Maicih & camilan pedas", where: "Maicih, dll.",
-    desc: "Keripik singkong, seblak kering, basreng. Sebutkan level pedasnya." },
 
   { id: "tahu-susu-lembang", route: "bdg-smd", cat: "camilan",
     name: "Tahu Susu Lembang", where: "Lembang",
@@ -104,10 +116,6 @@ window.KJ_PRODUCTS = [
     name: "Jabarano Coffee", where: "Jabarano",
     desc: "Kopi dari biji Jawa Barat. Bisa sekalian titip cireng-nya." },
 
-  { id: "kopi-selamat-pagi", route: "bdg-smd", cat: "kopi",
-    name: "Kopi Selamat Pagi (literan)", where: "Kopi Selamat Pagi",
-    desc: "Kopi susu dengan rasa kelapa, dalam botol literan." },
-
   { id: "kopi-aroma", route: "bdg-smd", cat: "kopi",
     name: "Kopi Aroma", where: "Jl. Banceuy",
     desc: "Kopi bubuk dari pabrik kopi tua di Banceuy.",
@@ -121,22 +129,6 @@ window.KJ_PRODUCTS = [
     name: "Makmur Jaya Coffee Roaster", where: "Makmur Jaya",
     desc: "Biji kopi sangrai sendiri, bisa minta digiling.",
     variants: ["Minuman", "Biji kopi", "Digiling"] },
-
-  { id: "sepatu-cibaduyut", route: "bdg-smd", cat: "fashion",
-    name: "Sepatu & sandal Cibaduyut", where: "Cibaduyut",
-    desc: "Kirim foto modelnya lewat WhatsApp dan tulis ukuran kaki di catatan." },
-
-  { id: "tas-dompet", route: "bdg-smd", cat: "fashion",
-    name: "Tas & dompet kulit", where: "Pengrajin Bandung",
-    desc: "Buatan pengrajin lokal. Sebutkan warna dan ukuran." },
-
-  { id: "factory-outlet", route: "bdg-smd", cat: "fashion",
-    name: "Pakaian dari factory outlet", where: "Factory outlet Bandung",
-    desc: "Kirim link atau foto barangnya, nanti kami carikan di FO." },
-
-  { id: "skincare", route: "bdg-smd", cat: "skincare",
-    name: "Skincare & kosmetik", where: "Toko & mall di Bandung",
-    desc: "Tulis merek, nama produk, dan ukurannya. Kami cek stok dulu." },
 
   { id: "supermarket", route: "bdg-smd", cat: "harian",
     name: "Belanja supermarket", where: "Supermarket di Bandung",
@@ -186,15 +178,15 @@ window.KJ_PRODUCTS = [
     desc: "Buah musiman, dijual per kilo." },
 
   { id: "bolu-aren", route: "smd-bdg", cat: "kue",
-    name: "Bolu Aren", where: "Sumedang",
-    desc: "Bolu dengan gula aren, tidak terlalu manis." },
+    name: "Bolu Aren Sumedang", where: "Bolu Aren, Sumedang",
+    desc: "Bolu tradisional dengan gula aren, lembut dan tidak terlalu manis." },
 
   { id: "lapis-sumedang", route: "smd-bdg", cat: "kue",
     name: "Lapis Sumedang", where: "Sumedang",
     desc: "Kue lapis untuk oleh-oleh atau acara keluarga." },
 
   { id: "kopi-sumedang", route: "smd-bdg", cat: "kopi", tag: "baru",
-    name: "Kopi Sumedang", where: "Kebun kopi di Sumedang",
-    desc: "Kopi dari kebun di lereng gunung Sumedang.",
-    variants: ["Biji kopi", "Bubuk"] }
+    name: "Kopi Sumedang Sindang Rasa", where: "Toko Kopi Sindang Rasa",
+    desc: "Kopi lokal Sumedang yang disangrai sendiri. Pilih jenis dan bentuknya.",
+    variants: ["Arabika, biji", "Arabika, bubuk", "Robusta, biji", "Robusta, bubuk"] }
 ];
